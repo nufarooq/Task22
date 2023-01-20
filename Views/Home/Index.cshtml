@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+
+    function ShowUniqueNumbers() {
+        var value = $("#txtNumber").val();
+        
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetUniqueNumbers",
+            data: { "Number": value },
+            success: function (response) {
+                $("#spnShow").html(response);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+    }
+
+</script>
+
+<div class="row">
+    <br />
+    Enter Numbers:
+    <input type="text" name="txtNumber" maxlength="9" id="txtNumber" />
+    <br /><br />
+    <input type="button" id="btnSubmit" value="Show Unique Numbers" onclick="ShowUniqueNumbers();" />
+    <br /><br />
+    <span id="spnShow"></span>
+</div>
